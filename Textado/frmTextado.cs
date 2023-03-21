@@ -26,15 +26,58 @@ namespace Textado
         private void btnBucar_Click(object sender, EventArgs e)
         {
 
-            ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* "; 
-            ofdSeleccionar.RestoreDirectory = true;
-            ofdSeleccionar.Multiselect = false;
 
-            if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
+            
+
+            using (OpenFileDialog ofd = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
             {
-                txtNombre.Text = ofdSeleccionar.FileName;
-                txtResultado.Clear();
+
+                ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
+                ofdSeleccionar.RestoreDirectory = true;
+                ofdSeleccionar.Multiselect = false;
+
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+
+                    txtNombre.Text = ofdSeleccionar.FileName;
+                    txtResultado.Clear();
+
+
+                    object readOnly = false;
+                    object visible = true;
+                    object save = true;
+                    object fileName = ofd.FileName;
+                    object newTemplate = false;
+                    object docType = 0;
+                    object missing = Type.Missing;
+                    Microsoft.Office.Interop.Word._Document document;
+                    Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
+                    document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                    document.ActiveWindow.Selection.WholeStory();
+                    document.ActiveWindow.Selection.Copy();
+                    IDataObject dataObject = Clipboard.GetDataObject();
+                    rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
+
+
+                    application.Quit(ref missing, ref missing, ref missing);
+                }
+
             }
+
+
+
+
+            //ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
+            //ofdSeleccionar.RestoreDirectory = true;
+            //ofdSeleccionar.Multiselect = false;
+
+            //if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
+            //{
+            //    txtNombre.Text = ofdSeleccionar.FileName;
+            //    txtResultado.Clear();
+
+            //}
 
         }
 
@@ -267,11 +310,55 @@ namespace Textado
                 BuscarHighLight(FileName);
         }
 
+        private void btnLimpiar_ItemClick(object sender, EventArgs e)
+        {
 
+        }
 
- 
-      
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void txtResultado_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ribbonPanel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ribbonTabItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonItem1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ofdSeleccionar_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void ribbonBar4_ItemClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rtfData_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
   

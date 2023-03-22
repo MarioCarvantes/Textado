@@ -14,7 +14,7 @@ namespace Textado
 {
     public partial class frmTextado : Form
     {
-     
+
         string Caracter;
 
 
@@ -27,27 +27,21 @@ namespace Textado
         {
 
 
-            
 
-            using (OpenFileDialog ofd = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
+
+            using (OpenFileDialog ofdSeleccionar = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
             {
-
-                ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
                 ofdSeleccionar.RestoreDirectory = true;
-                ofdSeleccionar.Multiselect = false;
 
-
-                if (ofd.ShowDialog() == DialogResult.OK)
+                if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
                 {
-
                     txtNombre.Text = ofdSeleccionar.FileName;
                     txtResultado.Clear();
-
 
                     object readOnly = false;
                     object visible = true;
                     object save = true;
-                    object fileName = ofd.FileName;
+                    object fileName = ofdSeleccionar.FileName;
                     object newTemplate = false;
                     object docType = 0;
                     object missing = Type.Missing;
@@ -58,26 +52,10 @@ namespace Textado
                     document.ActiveWindow.Selection.Copy();
                     IDataObject dataObject = Clipboard.GetDataObject();
                     rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
-
-
                     application.Quit(ref missing, ref missing, ref missing);
                 }
-
             }
 
-
-
-
-            //ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
-            //ofdSeleccionar.RestoreDirectory = true;
-            //ofdSeleccionar.Multiselect = false;
-
-            //if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
-            //{
-            //    txtNombre.Text = ofdSeleccionar.FileName;
-            //    txtResultado.Clear();
-
-            //}
 
         }
 
@@ -99,7 +77,7 @@ namespace Textado
                 object missing = Type.Missing;
 
                 Word.Range objRange = thisDoc.Content;
-       
+
                 objRange.Find.Highlight = 1;
                 objRange.Find.Forward = true;
 
@@ -138,7 +116,7 @@ namespace Textado
                                 tempStrText = "";
                             }
 
-                           
+
                             tempStr = "";
                             tempStrText = "";
                         }
@@ -157,25 +135,25 @@ namespace Textado
                 tmpnombredic = nombredic;
                 while (System.IO.File.Exists(FilePath + @"\" + Name + tmpnombredic + Extencion))
                 {
-                   
+
                     tmpnombredic = nombredic + "(" + cont.ToString() + ")";
                     cont++;
                 }
                 nombredic = tmpnombredic;
-                Name = FilePath + @"\" + Name + nombredic + Extencion ;
+                Name = FilePath + @"\" + Name + nombredic + Extencion;
                 txtResultado.Text = Name;
-                
+
                 thisDoc.SaveAs2(Name, nullobject, nullobject);
-             
+
                 wordObject.Quit(true, Type.Missing, Type.Missing);
 
                 circularProgress1.IsRunning = false;
                 circularProgress1.Visible = false;
                 if (MessageBox.Show("La versión pública del documentos se generó y guardó con éxito, " + System.Environment.NewLine + "¿Deseas abrir el directorio donde se guardó?", "Documento público guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    Process Proceso = Process.Start( FilePath);
+                    Process Proceso = Process.Start(FilePath);
                 }
-               
+
             }
             catch (Exception e)
             {
@@ -184,7 +162,7 @@ namespace Textado
         }
 
 
-        private void ReplaceText( Word.Document pthisDoc, string pFind = "", int pStart = 0, int pEnd = 0, string pTexted = "")
+        private void ReplaceText(Word.Document pthisDoc, string pFind = "", int pStart = 0, int pEnd = 0, string pTexted = "")
         {
 
             object start = pStart;
@@ -199,23 +177,23 @@ namespace Textado
 
         private void buscar_Texto(Word.Document pthisDoc)
         {
-                object missing = Type.Missing;
-                object start = 1;
-                object end = 1;
+            object missing = Type.Missing;
+            object start = 1;
+            object end = 1;
 
-                Word.Range objRange = pthisDoc.Content;
-                objRange.Find.Text = "daño a la hacienda";
-                objRange.Find.Forward = true;
+            Word.Range objRange = pthisDoc.Content;
+            objRange.Find.Text = "daño a la hacienda";
+            objRange.Find.Forward = true;
 
 
-                bool found = objRange.Find.Execute("daño a la hacienda", missing, missing, missing, missing, missing, true,
-                    missing, missing, missing, missing, missing, missing, missing, missing);
-                if (found)
-                {
+            bool found = objRange.Find.Execute("daño a la hacienda", missing, missing, missing, missing, missing, true,
+                missing, missing, missing, missing, missing, missing, missing, missing);
+            if (found)
+            {
 
-                    objRange.Select();
-                    objRange.HighlightColorIndex = Word.WdColorIndex.wdDarkRed;        
-                }
+                objRange.Select();
+                objRange.HighlightColorIndex = Word.WdColorIndex.wdDarkRed;
+            }
         }
 
         private void BuscarHighLight_old(string pFileName = "")
@@ -361,9 +339,8 @@ namespace Textado
         }
     }
 
-  
+
 
 }
-
 
 

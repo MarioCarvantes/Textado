@@ -26,35 +26,58 @@ namespace Textado
         private void btnBucar_Click(object sender, EventArgs e)
         {
 
+            ofdSeleccionar.RestoreDirectory = true;
+            ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
 
-
-
-            using (OpenFileDialog ofdSeleccionar = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
+            if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
             {
-                ofdSeleccionar.RestoreDirectory = true;
+                txtNombre.Text = ofdSeleccionar.FileName;
 
-                if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
-                {
-                    txtNombre.Text = ofdSeleccionar.FileName;
-                    txtResultado.Clear();
+                txtResultado.Clear();
 
-                    object readOnly = false;
-                    object visible = true;
-                    object save = true;
-                    object fileName = ofdSeleccionar.FileName;
-                    object newTemplate = false;
-                    object docType = 0;
-                    object missing = Type.Missing;
-                    Microsoft.Office.Interop.Word._Document document;
-                    Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
-                    document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
-                    document.ActiveWindow.Selection.WholeStory();
-                    document.ActiveWindow.Selection.Copy();
-                    IDataObject dataObject = Clipboard.GetDataObject();
-                    rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
-                    application.Quit(ref missing, ref missing, ref missing);
-                }
+                object readOnly = false;
+                object visible = true;
+                object save = true;
+                object fileName = ofdSeleccionar.FileName;
+                object newTemplate = false;
+                object docType = 0;
+                object missing = Type.Missing;
+                Microsoft.Office.Interop.Word._Document document;
+                Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
+                document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                document.ActiveWindow.Selection.WholeStory();
+                document.ActiveWindow.Selection.Copy();
+                IDataObject dataObject = Clipboard.GetDataObject();
+                rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
+                application.Quit(ref missing, ref missing, ref missing); // Your code here
             }
+
+            //using (OpenFileDialog ofdSeleccionar = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
+            //{
+            //    ofdSeleccionar.RestoreDirectory = true;
+
+            //    if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
+            //    {
+            //        txtNombre.Text = ofdSeleccionar.FileName;
+            //        txtResultado.Clear();
+
+            //        object readOnly = false;
+            //        object visible = true;
+            //        object save = true;
+            //        object fileName = ofdSeleccionar.FileName;
+            //        object newTemplate = false;
+            //        object docType = 0;
+            //        object missing = Type.Missing;
+            //        Microsoft.Office.Interop.Word._Document document;
+            //        Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
+            //        document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+            //        document.ActiveWindow.Selection.WholeStory();
+            //        document.ActiveWindow.Selection.Copy();
+            //        IDataObject dataObject = Clipboard.GetDataObject();
+            //        rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
+            //        application.Quit(ref missing, ref missing, ref missing);
+            //    }
+            //}
 
 
         }

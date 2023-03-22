@@ -64,7 +64,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(391, 4);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(644, 22);
@@ -75,7 +75,7 @@
             // 
             this.btnBucar.Image = ((System.Drawing.Image)(resources.GetObject("btnBucar.Image")));
             this.btnBucar.Location = new System.Drawing.Point(1073, 4);
-            this.btnBucar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBucar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBucar.Name = "btnBucar";
             this.btnBucar.Size = new System.Drawing.Size(53, 26);
             this.btnBucar.TabIndex = 2;
@@ -90,7 +90,7 @@
             // txtResultado
             // 
             this.txtResultado.Location = new System.Drawing.Point(391, 63);
-            this.txtResultado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtResultado.Margin = new System.Windows.Forms.Padding(4);
             this.txtResultado.Name = "txtResultado";
             this.txtResultado.ReadOnly = true;
             this.txtResultado.Size = new System.Drawing.Size(644, 22);
@@ -114,7 +114,7 @@
             // 
             this.circularProgress1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.circularProgress1.Location = new System.Drawing.Point(1413, 22);
-            this.circularProgress1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.circularProgress1.Margin = new System.Windows.Forms.Padding(4);
             this.circularProgress1.Name = "circularProgress1";
             this.circularProgress1.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot;
             this.circularProgress1.Size = new System.Drawing.Size(112, 47);
@@ -132,7 +132,7 @@
             "▒",
             "▓"});
             this.comboBox1.Location = new System.Drawing.Point(1073, 54);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(52, 24);
             this.comboBox1.TabIndex = 6;
@@ -152,10 +152,10 @@
             this.ribbonTabItem2});
             this.ribbonControl1.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonControl1.MaximumSize = new System.Drawing.Size(3840, 2160);
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.ribbonControl1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.ribbonControl1.Size = new System.Drawing.Size(1633, 121);
             this.ribbonControl1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonControl1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
@@ -189,11 +189,11 @@
             this.ribbonPanel1.Controls.Add(this.btnBucar);
             this.ribbonPanel1.Controls.Add(this.lblNombre);
             this.ribbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel1.Location = new System.Drawing.Point(0, 29);
-            this.ribbonPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonPanel1.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonPanel1.Name = "ribbonPanel1";
-            this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(4, 0, 4, 4);
-            this.ribbonPanel1.Size = new System.Drawing.Size(1633, 88);
+            this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(4, 0, 4, 3);
+            this.ribbonPanel1.Size = new System.Drawing.Size(1633, 93);
             // 
             // 
             // 
@@ -227,9 +227,9 @@
             this.btnSalir});
             this.ribbonBar4.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBar4.Location = new System.Drawing.Point(120, 0);
-            this.ribbonBar4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonBar4.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonBar4.Name = "ribbonBar4";
-            this.ribbonBar4.Size = new System.Drawing.Size(111, 84);
+            this.ribbonBar4.Size = new System.Drawing.Size(111, 90);
             this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar4.TabIndex = 5;
             // 
@@ -272,9 +272,9 @@
             this.btnInicio});
             this.btnLimpiar.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.btnLimpiar.Location = new System.Drawing.Point(4, 0);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(116, 84);
+            this.btnLimpiar.Size = new System.Drawing.Size(116, 90);
             this.btnLimpiar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnLimpiar.TabIndex = 2;
             // 
@@ -316,7 +316,7 @@
             // 
             this.rtfData.BackgroundStyle.Class = "RichTextBoxBorder";
             this.rtfData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.rtfData.Location = new System.Drawing.Point(12, 127);
+            this.rtfData.Location = new System.Drawing.Point(12, 199);
             this.rtfData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rtfData.Name = "rtfData";
             this.rtfData.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2058{\\fonttbl{\\f0\\fnil\\fcharset0 " +
@@ -334,7 +334,7 @@
             this.Controls.Add(this.rtfData);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(3839, 2158);
             this.MinimumSize = new System.Drawing.Size(1029, 296);
             this.Name = "frmTextado";

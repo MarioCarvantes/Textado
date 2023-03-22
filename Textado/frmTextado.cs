@@ -358,7 +358,7 @@ namespace Textado
 
         private void rtfData_TextChanged(object sender, EventArgs e)
         {
-
+                
         }
     }
 

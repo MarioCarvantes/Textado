@@ -47,6 +47,9 @@
             this.ribbonTabItem2 = new DevComponents.DotNetBar.RibbonTabItem();
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
             this.rtfData = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.ribbonControl1.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -326,11 +329,52 @@
             this.rtfData.TabIndex = 30;
             this.rtfData.TextChanged += new System.EventHandler(this.rtfData_TextChanged);
             // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(29, 150);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(108, 21);
+            this.labelX1.TabIndex = 31;
+            this.labelX1.Text = "Buscar palabras";
+            this.labelX1.Click += new System.EventHandler(this.labelX1_Click);
+            // 
+            // txtSearch
+            // 
+            // 
+            // 
+            // 
+            this.txtSearch.Border.Class = "TextBoxBorder";
+            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSearch.Location = new System.Drawing.Point(143, 151);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PreventEnterBeep = true;
+            this.txtSearch.Size = new System.Drawing.Size(316, 22);
+            this.txtSearch.TabIndex = 32;
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Location = new System.Drawing.Point(478, 151);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(75, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX1.TabIndex = 33;
+            this.buttonX1.Text = "Buscar";
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
+            // 
             // frmTextado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1633, 879);
+            this.Controls.Add(this.buttonX1);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.labelX1);
             this.Controls.Add(this.rtfData);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -368,6 +412,9 @@
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItem2;
         private DevComponents.DotNetBar.StyleManager styleManager1;
         private DevComponents.DotNetBar.Controls.RichTextBoxEx rtfData;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
+        private DevComponents.DotNetBar.ButtonX buttonX1;
     }
 }
 

@@ -182,6 +182,8 @@ namespace Textado
             {
 
             }
+
+
         }
 
 
@@ -359,6 +361,33 @@ namespace Textado
         private void rtfData_TextChanged(object sender, EventArgs e)
         {
                 
+        }
+
+        private void labelX1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonX1_Click(object sender, EventArgs e)
+        {
+            string[] words = txtSearch.Text.Split(',');
+            foreach (string word in words)
+            {
+                int startIndex = 0;
+                while (startIndex < rtfData.TextLength)
+                {
+                    int wordStartIndex = rtfData.Find(word, startIndex, RichTextBoxFinds.None);
+                    if (wordStartIndex != -1)
+                    {
+                        rtfData.SelectionStart = wordStartIndex;
+                        rtfData.SelectionLength = word.Length;
+                        rtfData.SelectionBackColor = Color.Yellow ;
+                    }
+                    else
+                        break;
+                    startIndex += wordStartIndex + word.Length;
+                }
+            }
         }
     }
 

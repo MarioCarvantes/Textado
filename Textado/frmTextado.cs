@@ -52,6 +52,10 @@ namespace Textado
                 application.Quit(ref missing, ref missing, ref missing); // Your code here
             }
 
+
+
+            //combinacion de los codigos utilizados, no funciona como debe presenta el Word document pero no lo puede textar
+
             //using (OpenFileDialog ofdSeleccionar = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
             //{
             //    ofdSeleccionar.RestoreDirectory = true;
@@ -368,8 +372,12 @@ namespace Textado
 
         }
 
+
+        //boton de buscar
         private void buttonX1_Click(object sender, EventArgs e)
         {
+
+            //codigo de la busqueda
             string[] words = txtSearch.Text.Split(',');
             foreach (string word in words)
             {

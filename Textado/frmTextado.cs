@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 using System.Diagnostics;
 using Microsoft.Office.Interop.Word;
+using Microsoft.Office.Tools.Word;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+//using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace Textado
 {
@@ -418,15 +421,27 @@ namespace Textado
 
         private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //// Obtener el objeto de aplicación de Word actual
-            //Application word = new Application();
+            // Crear una instancia de Word
+            Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
 
-            //// Obtener el documento actualmente abierto
-            //Document doc = word.ActiveDocument;
+            // Crear un nuevo documento de Word
+            Microsoft.Office.Interop.Word.Document doc = word.Documents.Add();
 
-            //// Guardar los cambios en el documento
-            //doc.Save();
+            // Agregar el contenido del RichTextBox al documento
+            Microsoft.Office.Interop.Word.Range range = doc.Range(0, 0);
+            range.Text = rtfData.Text;
+
+            // Guardar el documento como un archivo de Word
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                doc.SaveAs(saveFileDialog1.FileName);
+            }
+
+            // Cerrar el documento y Word
+            doc.Close();
+            word.Quit();
         }
+
     }
 
 

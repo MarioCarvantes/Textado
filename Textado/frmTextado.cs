@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 using System.Diagnostics;
+using Microsoft.Office.Interop.Word;
 
 namespace Textado
 {
@@ -27,7 +28,7 @@ namespace Textado
         {
 
             ofdSeleccionar.RestoreDirectory = true;
-            ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
+            ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
 
             if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
             {
@@ -396,6 +397,35 @@ namespace Textado
                     startIndex += wordStartIndex + word.Length;
                 }
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+     
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            
+        }
+
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //// Obtener el objeto de aplicación de Word actual
+            //Application word = new Application();
+
+            //// Obtener el documento actualmente abierto
+            //Document doc = word.ActiveDocument;
+
+            //// Guardar los cambios en el documento
+            //doc.Save();
         }
     }
 

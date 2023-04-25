@@ -12,6 +12,9 @@ using System.Diagnostics;
 using Microsoft.Office.Interop.Word;
 using Microsoft.Office.Tools.Word;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Application = System.Windows.Forms.Application;
+using Document = Microsoft.Office.Interop.Word.Document;
+using System.Runtime.InteropServices;
 //using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace Textado
@@ -29,6 +32,7 @@ namespace Textado
 
         private void btnBucar_Click(object sender, EventArgs e)
         {
+
 
             ofdSeleccionar.RestoreDirectory = true;
             ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
@@ -53,12 +57,58 @@ namespace Textado
                 document.ActiveWindow.Selection.Copy();
                 IDataObject dataObject = Clipboard.GetDataObject();
                 rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
-                application.Quit(ref missing, ref missing, ref missing); // Your code here
+                application.Quit(ref missing, ref missing, ref missing);
+
+                // Abrir el archivo seleccionado en Word
+                Process.Start("WINWORD.EXE", fileName.ToString());
             }
 
 
 
-            //combinacion de los codigos utilizados, no funciona como debe presenta el Word document pero no lo puede textar
+
+
+            //ofdSeleccionar.RestoreDirectory = true;
+            //ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
+
+
+
+            ////Word.Application word = (Word.Application)Marshal.GetActiveObject("Word.Application");
+            ////Word.Document doc = word.ActiveDocument;
+
+
+            //if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
+            //{
+            //    txtNombre.Text = ofdSeleccionar.FileName;
+
+            //    txtResultado.Clear();
+
+            //    object readOnly = false;
+            //    object visible = true;
+            //    object save = true;
+            //    object fileName = ofdSeleccionar.FileName;
+            //    object newTemplate = false;
+            //    object docType = 0;
+            //    object missing = Type.Missing;
+            //    Microsoft.Office.Interop.Word._Document document;
+            //    Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
+            //    document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+            //    document.ActiveWindow.Selection.WholeStory();
+            //    document.ActiveWindow.Selection.Copy();
+            //    IDataObject dataObject = Clipboard.GetDataObject();
+            //    rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
+            //    application.Quit(ref missing, ref missing, ref missing);
+
+            //    Process.Start("WINWORD.EXE");
+
+
+
+
+            //}
+
+            //combinacion de los codigos utilizados, no funciona como debe, presenta el Word document pero no lo puede textar
+
+
+
 
             //using (OpenFileDialog ofdSeleccionar = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
             //{
@@ -103,7 +153,7 @@ namespace Textado
                 string FilePath = "", Name = "";
                 int thisStart = 0, thisEnd = 0;
                 thisDoc.Activate();
-                wordObject.Visible = false;
+                wordObject.Visible = true;
 
                 object missing = Type.Missing;
 
@@ -419,8 +469,33 @@ namespace Textado
             
         }
 
+        //guardado del documento, crea un documento nuevo.(buscando la manera de que se guarde en el mismo documento)
         private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            //// Crear una instancia de Word
+            //Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
+
+            //// Crear un nuevo documento de Word
+            //Microsoft.Office.Interop.Word.Document doc = word.Documents.Add();
+
+            //// Agregar el contenido del RichTextBox al documento
+            //string rtfData = rtfbox.SelectedRtf; // Obtener el texto RTF del RichTextBox
+            //Clipboard.SetText(rtfData, TextDataFormat.Rtf); // Copiar el texto RTF al portapapeles
+            //Microsoft.Office.Interop.Word.Range range = doc.Range();
+            //range.Paste(); // Pegar el texto RTF en el documento de Word
+
+            //// Guardar el documento como un archivo de Word
+            //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    doc.SaveAs(saveFileDialog1.FileName);
+            //}
+
+            //// Cerrar el documento y Word
+            //doc.Close();
+            //word.Quit();
+
+
             // Crear una instancia de Word
             Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
 
@@ -440,9 +515,36 @@ namespace Textado
             // Cerrar el documento y Word
             doc.Close();
             word.Quit();
+
+
+            //no funciona (la idea era guardar el los cambios del richTextBox en el mismo documento de word pero no funciona el "Globlas.ThisAdding" apesar de que tiene el interop de office)-
+            //Microsoft.Office.Interop.Word.Application word = Globals.ThisAddIn.Application;
+
+            //// Obtener el documento actualmente abierto
+            //Microsoft.Office.Interop.Word.Document doc = word.ActiveDocument;
+
+            //// Guardar los cambios en el documento
+            //doc.Save();
+
         }
 
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+
+
+        }
+
+
     }
+
+
+
 
 
 

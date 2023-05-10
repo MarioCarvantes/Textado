@@ -46,17 +46,11 @@
             this.btnInicio = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonTabItem2 = new DevComponents.DotNetBar.RibbonTabItem();
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
-            this.rtfData = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.axEDOffice1 = new AxEDOfficeLib.AxEDOffice();
             this.ribbonControl1.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axEDOffice1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -121,7 +115,7 @@
             // 
             // 
             this.circularProgress1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.circularProgress1.Location = new System.Drawing.Point(1413, 22);
+            this.circularProgress1.Location = new System.Drawing.Point(1213, 23);
             this.circularProgress1.Margin = new System.Windows.Forms.Padding(4);
             this.circularProgress1.Name = "circularProgress1";
             this.circularProgress1.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot;
@@ -159,12 +153,12 @@
             this.ribbonControl1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.ribbonTabItem2});
             this.ribbonControl1.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
-            this.ribbonControl1.Location = new System.Drawing.Point(0, 28);
+            this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonControl1.MaximumSize = new System.Drawing.Size(3840, 2160);
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.ribbonControl1.Size = new System.Drawing.Size(1633, 121);
+            this.ribbonControl1.Size = new System.Drawing.Size(1900, 121);
             this.ribbonControl1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonControl1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
             this.ribbonControl1.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
@@ -201,7 +195,7 @@
             this.ribbonPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonPanel1.Name = "ribbonPanel1";
             this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(4, 0, 4, 3);
-            this.ribbonPanel1.Size = new System.Drawing.Size(1633, 93);
+            this.ribbonPanel1.Size = new System.Drawing.Size(1900, 93);
             // 
             // 
             // 
@@ -317,111 +311,32 @@
             this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Silver;
             this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
             // 
-            // rtfData
-            // 
-            // 
-            // 
-            // 
-            this.rtfData.BackgroundStyle.Class = "RichTextBoxBorder";
-            this.rtfData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.rtfData.Location = new System.Drawing.Point(12, 199);
-            this.rtfData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rtfData.Name = "rtfData";
-            this.rtfData.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2058{\\fonttbl{\\f0\\fnil\\fcharset0 " +
-    "Microsoft Sans Serif;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\par" +
-    "d\\f0\\fs16\\par\r\n}\r\n";
-            this.rtfData.Size = new System.Drawing.Size(1609, 741);
-            this.rtfData.TabIndex = 30;
-            this.rtfData.TextChanged += new System.EventHandler(this.rtfData_TextChanged);
-            // 
-            // labelX1
-            // 
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(12, 173);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(108, 21);
-            this.labelX1.TabIndex = 31;
-            this.labelX1.Text = "Buscar palabras";
-            this.labelX1.Click += new System.EventHandler(this.labelX1_Click);
-            // 
-            // txtSearch
-            // 
-            // 
-            // 
-            // 
-            this.txtSearch.Border.Class = "TextBoxBorder";
-            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(140, 171);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(316, 22);
-            this.txtSearch.TabIndex = 32;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(481, 171);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(75, 23);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 33;
-            this.buttonX1.Text = "Buscar";
-            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.MaximumSize = new System.Drawing.Size(100, 100);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(100, 28);
-            this.menuStrip1.TabIndex = 34;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guardarToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(73, 26);
-            this.toolStripMenuItem1.Text = "Archivo";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // guardarToolStripMenuItem
-            // 
-            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
-            this.guardarToolStripMenuItem.Text = "Guardar";
-            this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
+            // axEDOffice1
+            // 
+            this.axEDOffice1.Enabled = true;
+            this.axEDOffice1.Location = new System.Drawing.Point(12, 128);
+            this.axEDOffice1.Name = "axEDOffice1";
+            this.axEDOffice1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axEDOffice1.OcxState")));
+            this.axEDOffice1.Size = new System.Drawing.Size(1139, 561);
+            this.axEDOffice1.TabIndex = 35;
+            this.axEDOffice1.NotifyCtrlReady += new System.EventHandler(this.axEDOffice1_NotifyCtrlReady);
+            // 
             // frmTextado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1633, 879);
-            this.Controls.Add(this.buttonX1);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.labelX1);
-            this.Controls.Add(this.rtfData);
+            this.ClientSize = new System.Drawing.Size(1900, 1055);
+            this.Controls.Add(this.axEDOffice1);
             this.Controls.Add(this.ribbonControl1);
-            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(3839, 2158);
-            this.MinimumSize = new System.Drawing.Size(1029, 296);
+            this.MinimumSize = new System.Drawing.Size(1918, 1018);
             this.Name = "frmTextado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Textado";
@@ -430,10 +345,8 @@
             this.ribbonControl1.PerformLayout();
             this.ribbonPanel1.ResumeLayout(false);
             this.ribbonPanel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axEDOffice1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -455,14 +368,8 @@
         private DevComponents.DotNetBar.ButtonItem btnInicio;
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItem2;
         private DevComponents.DotNetBar.StyleManager styleManager1;
-        private DevComponents.DotNetBar.Controls.RichTextBoxEx rtfData;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private AxEDOfficeLib.AxEDOffice axEDOffice1;
     }
 }
 

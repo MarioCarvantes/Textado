@@ -15,6 +15,7 @@ using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using Application = System.Windows.Forms.Application;
 using Document = Microsoft.Office.Interop.Word.Document;
 using System.Runtime.InteropServices;
+using System.Xml.Linq;
 //using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace Textado
@@ -51,21 +52,25 @@ namespace Textado
                 object docType = 0;
                 object missing = Type.Missing;
                 Microsoft.Office.Interop.Word._Document document;
-                Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
+                Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false};
                 document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
                 document.ActiveWindow.Selection.WholeStory();
                 document.ActiveWindow.Selection.Copy();
                 IDataObject dataObject = Clipboard.GetDataObject();
-                rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
                 application.Quit(ref missing, ref missing, ref missing);
 
-                // Abrir el archivo seleccionado en Word
-                Process.Start("WINWORD.EXE", fileName.ToString());
+
+                axEDOffice1.Open(txtNombre.Text);
+
+               
+
+
+
             }
 
 
 
-
+            //mismo codigo que el de arriba  pero ahora ya funciona
 
             //ofdSeleccionar.RestoreDirectory = true;
             //ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
@@ -103,42 +108,14 @@ namespace Textado
 
 
 
-            //}
 
-            //combinacion de los codigos utilizados, no funciona como debe, presenta el Word document pero no lo puede textar
-
-
-
-
-            //using (OpenFileDialog ofdSeleccionar = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* " })
-            //{
-            //    ofdSeleccionar.RestoreDirectory = true;
-
-            //    if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
-            //    {
-            //        txtNombre.Text = ofdSeleccionar.FileName;
-            //        txtResultado.Clear();
-
-            //        object readOnly = false;
-            //        object visible = true;
-            //        object save = true;
-            //        object fileName = ofdSeleccionar.FileName;
-            //        object newTemplate = false;
-            //        object docType = 0;
-            //        object missing = Type.Missing;
-            //        Microsoft.Office.Interop.Word._Document document;
-            //        Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
-            //        document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
-            //        document.ActiveWindow.Selection.WholeStory();
-            //        document.ActiveWindow.Selection.Copy();
-            //        IDataObject dataObject = Clipboard.GetDataObject();
-            //        rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
-            //        application.Quit(ref missing, ref missing, ref missing);
-            //    }
-            //}
 
 
         }
+
+
+
+
 
         private void BuscarHighLight(string pFileName = "")
         {
@@ -153,7 +130,7 @@ namespace Textado
                 string FilePath = "", Name = "";
                 int thisStart = 0, thisEnd = 0;
                 thisDoc.Activate();
-                wordObject.Visible = true;
+                wordObject.Visible = false;
 
                 object missing = Type.Missing;
 
@@ -211,6 +188,11 @@ namespace Textado
                 FilePath = System.IO.Path.GetDirectoryName(ofdSeleccionar.FileName);
                 Name = System.IO.Path.GetFileNameWithoutExtension(ofdSeleccionar.FileName);
 
+              
+                thisDoc.SaveAs2(Name, nullobject, nullobject);
+
+
+
                 int cont = 1;
                 string nombredic = "_Público", Extencion = ".docx", tmpnombredic = "";
                 tmpnombredic = nombredic;
@@ -220,13 +202,16 @@ namespace Textado
                     tmpnombredic = nombredic + "(" + cont.ToString() + ")";
                     cont++;
                 }
+                
+
+
                 nombredic = tmpnombredic;
                 Name = FilePath + @"\" + Name + nombredic + Extencion;
                 txtResultado.Text = Name;
-
-                thisDoc.SaveAs2(Name, nullobject, nullobject);
-
+                
                 wordObject.Quit(true, Type.Missing, Type.Missing);
+
+
 
                 circularProgress1.IsRunning = false;
                 circularProgress1.Visible = false;
@@ -243,6 +228,8 @@ namespace Textado
 
 
         }
+
+
 
 
         private void ReplaceText(Word.Document pthisDoc, string pFind = "", int pStart = 0, int pEnd = 0, string pTexted = "")
@@ -427,30 +414,6 @@ namespace Textado
         }
 
 
-        //boton de buscar
-        private void buttonX1_Click(object sender, EventArgs e)
-        {
-
-            //codigo de la busqueda
-            string[] words = txtSearch.Text.Split(',');
-            foreach (string word in words)
-            {
-                int startIndex = 0;
-                while (startIndex < rtfData.TextLength)
-                {
-                    int wordStartIndex = rtfData.Find(word, startIndex, RichTextBoxFinds.None);
-                    if (wordStartIndex != -1)
-                    {
-                        rtfData.SelectionStart = wordStartIndex;
-                        rtfData.SelectionLength = word.Length;
-                        rtfData.SelectionBackColor = Color.Yellow ;
-                    }
-                    else
-                        break;
-                    startIndex += wordStartIndex + word.Length;
-                }
-            }
-        }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
@@ -459,74 +422,14 @@ namespace Textado
 
      
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             
         }
 
-        //guardado del documento, crea un documento nuevo.(buscando la manera de que se guarde en el mismo documento)
-        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            //// Crear una instancia de Word
-            //Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
-
-            //// Crear un nuevo documento de Word
-            //Microsoft.Office.Interop.Word.Document doc = word.Documents.Add();
-
-            //// Agregar el contenido del RichTextBox al documento
-            //string rtfData = rtfbox.SelectedRtf; // Obtener el texto RTF del RichTextBox
-            //Clipboard.SetText(rtfData, TextDataFormat.Rtf); // Copiar el texto RTF al portapapeles
-            //Microsoft.Office.Interop.Word.Range range = doc.Range();
-            //range.Paste(); // Pegar el texto RTF en el documento de Word
-
-            //// Guardar el documento como un archivo de Word
-            //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            //{
-            //    doc.SaveAs(saveFileDialog1.FileName);
-            //}
-
-            //// Cerrar el documento y Word
-            //doc.Close();
-            //word.Quit();
-
-
-            // Crear una instancia de Word
-            Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
-
-            // Crear un nuevo documento de Word
-            Microsoft.Office.Interop.Word.Document doc = word.Documents.Add();
-
-            // Agregar el contenido del RichTextBox al documento
-            Microsoft.Office.Interop.Word.Range range = doc.Range(0, 0);
-            range.Text = rtfData.Text;
-
-            // Guardar el documento como un archivo de Word
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                doc.SaveAs(saveFileDialog1.FileName);
-            }
-
-            // Cerrar el documento y Word
-            doc.Close();
-            word.Quit();
-
-
-            //no funciona (la idea era guardar el los cambios del richTextBox en el mismo documento de word pero no funciona el "Globlas.ThisAdding" apesar de que tiene el interop de office)-
-            //Microsoft.Office.Interop.Word.Application word = Globals.ThisAddIn.Application;
-
-            //// Obtener el documento actualmente abierto
-            //Microsoft.Office.Interop.Word.Document doc = word.ActiveDocument;
-
-            //// Guardar los cambios en el documento
-            //doc.Save();
-
-        }
+       
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -540,7 +443,12 @@ namespace Textado
 
         }
 
+        private void axEDOffice1_NotifyCtrlReady(object sender, EventArgs e)
+        {
 
+        }
+
+      
     }
 
 

@@ -35,81 +35,18 @@ namespace Textado
         {
 
 
+            ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
             ofdSeleccionar.RestoreDirectory = true;
-            ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
+            ofdSeleccionar.Multiselect = false;
 
             if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
             {
                 txtNombre.Text = ofdSeleccionar.FileName;
-
                 txtResultado.Clear();
-
-                object readOnly = false;
-                object visible = true;
-                object save = true;
-                object fileName = ofdSeleccionar.FileName;
-                object newTemplate = false;
-                object docType = 0;
-                object missing = Type.Missing;
-                Microsoft.Office.Interop.Word._Document document;
-                Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false};
-                document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
-                document.ActiveWindow.Selection.WholeStory();
-                document.ActiveWindow.Selection.Copy();
-                IDataObject dataObject = Clipboard.GetDataObject();
-                application.Quit(ref missing, ref missing, ref missing);
-
-
-                axEDOffice1.Open(txtNombre.Text);
-
-               
-
-
-
             }
 
 
-
-            //mismo codigo que el de arriba  pero ahora ya funciona
-
-            //ofdSeleccionar.RestoreDirectory = true;
-            //ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
-
-
-
-            ////Word.Application word = (Word.Application)Marshal.GetActiveObject("Word.Application");
-            ////Word.Document doc = word.ActiveDocument;
-
-
-            //if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
-            //{
-            //    txtNombre.Text = ofdSeleccionar.FileName;
-
-            //    txtResultado.Clear();
-
-            //    object readOnly = false;
-            //    object visible = true;
-            //    object save = true;
-            //    object fileName = ofdSeleccionar.FileName;
-            //    object newTemplate = false;
-            //    object docType = 0;
-            //    object missing = Type.Missing;
-            //    Microsoft.Office.Interop.Word._Document document;
-            //    Microsoft.Office.Interop.Word._Application application = new Microsoft.Office.Interop.Word.Application() { Visible = false };
-            //    document = application.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
-            //    document.ActiveWindow.Selection.WholeStory();
-            //    document.ActiveWindow.Selection.Copy();
-            //    IDataObject dataObject = Clipboard.GetDataObject();
-            //    rtfData.Rtf = dataObject.GetData(DataFormats.Rtf).ToString();
-            //    application.Quit(ref missing, ref missing, ref missing);
-
-            //    Process.Start("WINWORD.EXE");
-
-
-
-
-
-
+            axEDOffice1.Open(txtNombre.Text);
 
         }
 
@@ -190,6 +127,8 @@ namespace Textado
 
               
                 thisDoc.SaveAs2(Name, nullobject, nullobject);
+                //pFileName.Close();
+                thisDoc.Close();
 
 
 

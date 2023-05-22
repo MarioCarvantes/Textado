@@ -16,6 +16,8 @@ using Application = System.Windows.Forms.Application;
 using Document = Microsoft.Office.Interop.Word.Document;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
+using AxEDOfficeLib;
+
 //using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace Textado
@@ -38,15 +40,16 @@ namespace Textado
             ofdSeleccionar.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.* ";
             ofdSeleccionar.RestoreDirectory = true;
             ofdSeleccionar.Multiselect = false;
-
+           
             if (ofdSeleccionar.ShowDialog() == DialogResult.OK)
             {
                 txtNombre.Text = ofdSeleccionar.FileName;
                 txtResultado.Clear();
+                axEDOffice1.Open(txtNombre.Text);
+
             }
 
 
-            axEDOffice1.Open(txtNombre.Text);
 
         }
 
@@ -56,6 +59,9 @@ namespace Textado
 
         private void BuscarHighLight(string pFileName = "")
         {
+            axEDOffice1.CloseDoc(txtNombre.Text);
+
+
             Word.Application wordObject = new Word.Application();
             Word.Document thisDoc;
             try
@@ -124,11 +130,10 @@ namespace Textado
                 buscar_Texto(thisDoc);
                 FilePath = System.IO.Path.GetDirectoryName(ofdSeleccionar.FileName);
                 Name = System.IO.Path.GetFileNameWithoutExtension(ofdSeleccionar.FileName);
+               // if (System.IO.File.Exists(Name))
+               //     System.IO.File.Delete(Name);
 
-              
-                thisDoc.SaveAs2(Name, nullobject, nullobject);
-                //pFileName.Close();
-                thisDoc.Close();
+               
 
 
 
@@ -141,23 +146,27 @@ namespace Textado
                     tmpnombredic = nombredic + "(" + cont.ToString() + ")";
                     cont++;
                 }
-                
 
+              
 
                 nombredic = tmpnombredic;
                 Name = FilePath + @"\" + Name + nombredic + Extencion;
+
+                thisDoc.SaveAs2(Name, nullobject, nullobject);
+                //pFileName.Close();
+                thisDoc.Close();
                 txtResultado.Text = Name;
-                
+
                 wordObject.Quit(true, Type.Missing, Type.Missing);
-
-
+               
+                axEDOffice1.Open(Name);
 
                 circularProgress1.IsRunning = false;
                 circularProgress1.Visible = false;
-                if (MessageBox.Show("La versión pública del documentos se generó y guardó con éxito, " + System.Environment.NewLine + "¿Deseas abrir el directorio donde se guardó?", "Documento público guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
-                {
-                    Process Proceso = Process.Start(FilePath);
-                }
+                //if (MessageBox.Show("La versión pública del documentos se generó y guardó con éxito, " + System.Environment.NewLine + "¿Deseas abrir el directorio donde se guardó?", "Documento público guardado", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                //{
+                //    Process Proceso = Process.Start(FilePath);
+                //}
 
             }
             catch (Exception e)
@@ -167,7 +176,6 @@ namespace Textado
 
 
         }
-
 
 
 
@@ -292,6 +300,7 @@ namespace Textado
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
+            
             string FileName = this.txtNombre.Text.Trim();
             if (!string.IsNullOrWhiteSpace(FileName))
                 BuscarHighLight(FileName);

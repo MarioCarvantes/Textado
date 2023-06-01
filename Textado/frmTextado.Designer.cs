@@ -71,7 +71,7 @@
             this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(644, 22);
             this.txtNombre.TabIndex = 1;
-            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+            //this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // btnBucar
             // 
@@ -97,7 +97,7 @@
             this.txtResultado.ReadOnly = true;
             this.txtResultado.Size = new System.Drawing.Size(644, 22);
             this.txtResultado.TabIndex = 4;
-            this.txtResultado.TextChanged += new System.EventHandler(this.txtResultado_TextChanged);
+            //this.txtResultado.TextChanged += new System.EventHandler(this.txtResultado_TextChanged);
             // 
             // label1
             // 
@@ -209,7 +209,7 @@
             // 
             this.ribbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel1.TabIndex = 1;
-            this.ribbonPanel1.Click += new System.EventHandler(this.ribbonPanel1_Click);
+            //this.ribbonPanel1.Click += new System.EventHandler(this.ribbonPanel1_Click);
             // 
             // ribbonBar4
             // 
@@ -242,7 +242,7 @@
             // 
             // 
             this.ribbonBar4.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar4.ItemClick += new System.EventHandler(this.ribbonBar4_ItemClick);
+            //this.ribbonBar4.ItemClick += new System.EventHandler(this.ribbonBar4_ItemClick);
             // 
             // btnSalir
             // 
@@ -304,7 +304,7 @@
             this.ribbonTabItem2.Name = "ribbonTabItem2";
             this.ribbonTabItem2.Panel = this.ribbonPanel1;
             this.ribbonTabItem2.Text = "Opciones";
-            this.ribbonTabItem2.Click += new System.EventHandler(this.ribbonTabItem2_Click);
+            //this.ribbonTabItem2.Click += new System.EventHandler(this.ribbonTabItem2_Click);
             // 
             // styleManager1
             // 
@@ -314,7 +314,7 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "Office Files (*.docx)|*.docx|All Files (*.*)|*.*";
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            //this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // axEDOffice1
             // 

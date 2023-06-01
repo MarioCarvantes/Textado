@@ -32,7 +32,7 @@ namespace Textado
         {
             InitializeComponent();
         }
-
+        // search and show of the documment
         private void btnBucar_Click(object sender, EventArgs e)
         {
 
@@ -45,6 +45,7 @@ namespace Textado
             {
                 txtNombre.Text = ofdSeleccionar.FileName;
                 txtResultado.Clear();
+                // opening of the documment in Edraw
                 axEDOffice1.Open(txtNombre.Text);
 
             }
@@ -56,9 +57,10 @@ namespace Textado
 
 
 
-
+        //Search of the yellow underlined
         private void BuscarHighLight(string pFileName = "")
         {
+            //temporadly clse of the document
             axEDOffice1.CloseDoc(txtNombre.Text);
 
 
@@ -310,86 +312,95 @@ namespace Textado
         {
 
         }
+        //old
+        //private void txtNombre_TextChanged(object sender, EventArgs e)
+        //{
 
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
+        //}
+        //old
+        //private void txtResultado_TextChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
+        //old element of toolbox, 
 
-        private void txtResultado_TextChanged(object sender, EventArgs e)
-        {
+        //private void ribbonPanel1_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
+        //old element of toolbox, 
 
-        private void ribbonPanel1_Click(object sender, EventArgs e)
-        {
+        //private void ribbonTabItem2_Click(object sender, EventArgs e)
+        //{
 
-        }
-
-        private void ribbonTabItem2_Click(object sender, EventArgs e)
-        {
-
-        }
+        //}
 
         private void buttonItem1_Click(object sender, EventArgs e)
         {
 
         }
+        //old element of toolbox, 
+        //private void buttonItem1_Click_1(object sender, EventArgs e)
+        //{
 
-        private void buttonItem1_Click_1(object sender, EventArgs e)
-        {
-
-        }
+        //}
 
         private void ofdSeleccionar_FileOk(object sender, CancelEventArgs e)
         {
 
         }
+        //old element of toolbox, 
 
-        private void ribbonBar4_ItemClick(object sender, EventArgs e)
-        {
+        //private void ribbonBar4_ItemClick(object sender, EventArgs e)
+        //{
 
-        }
+        //}
+        //old element of toolbox, 
 
-        private void rtfData_TextChanged(object sender, EventArgs e)
-        {
+        //private void rtfData_TextChanged(object sender, EventArgs e)
+        //{
                 
-        }
+        //}
+        //old element of toolbox, 
 
-        private void labelX1_Click(object sender, EventArgs e)
-        {
+        //private void labelX1_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
+
+
+        //old element of toolbox, 
+
+        //private void txtSearch_TextChanged(object sender, EventArgs e)
+        //{
+
+        //}
 
 
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
 
-        }
+        //old element of toolbox, 
 
-     
-
-        
-
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
+        //private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        //{
             
-        }
-
-       
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
+        //}
 
 
+        //old element of toolbox, 
 
-        }
+        //private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        //{
+
+        //}
+
+        //old element of toolbox, 
+        //private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
+        //{
+
+
+
+        //}
 
         private void axEDOffice1_NotifyCtrlReady(object sender, EventArgs e)
         {
